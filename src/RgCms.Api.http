@@ -1,0 +1,6 @@
+@RgCms.Api_HostAddress = https://localhost:7004
+
+GET {{RgCms.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
