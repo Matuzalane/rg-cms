@@ -9,18 +9,19 @@ public class PontoDeInteresse {
     public int Id { get; set; }
     [Required]
     [StringLength(160, MinimumLength=2)]
-    public string? Nome { get; set; }
+    public string Nome { get; set; }
     public CategoriaEnum Categoria { get; set; }
     public SubCategoriaEnum SubCategoria { get; set; }
     
     //Informações de Endereço
     [Required]
-    public string? Endereco { get; set; }
+    public string Endereco { get; set; }
     [Required]
-    public string? Bairro { get; set; }
+    public string Bairro { get; set; }
     [Required]
     [DataType(DataType.PostalCode)]
-    public string? Cep { get; set; }
+    [DisplayFormat(DataFormatString = "{0:#####-###}", ApplyFormatInEditMode = true)]
+    public string Cep { get; set; }
     public float Latitude { get; set; }
     public float Longitude { get; set; }
 
@@ -36,9 +37,8 @@ public class PontoDeInteresse {
 
     [DataType(DataType.EmailAddress)]
     [RegularExpression(".+\\@.+\\..+",ErrorMessage = "Informe um email válido...")]
-    public string? Email { get; set; }
-    public TipoRedeSocialEnum TipoRedeSocial { get; set; }
+    public string Email { get; set; }
     
-    [DataType(DataType.Url)]
-    public IList<string>? RedesSociais { get; set; }
+    public IList<RedeSocial> RedesSociais { get; set; }
+    public IList<Foto> Fotos { get; set; }
 }
