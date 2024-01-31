@@ -8,57 +8,62 @@ namespace RgCms.Api.Controllers;
 [Route("[controller]")]
 public class PontoDeInteresseController : ControllerBase
 {
-    public PontoDeInteresseController()
+    PontoDeInteresseService _service;
+
+    public PontoDeInteresseController(PontoDeInteresseService service)
     {
+        _service = service;
     }
 
     [HttpGet]
-    public ActionResult<List<PontoDeInteresse>> GetAll() => 
-        PontoDeInteresseService.GetAll();
+    public IEnumerable<PontoDeInteresse> GetAll()
+    {
+        return _service.GetAll();
+    }
 
     [HttpGet("{id}")]
-    public ActionResult<PontoDeInteresse> Get(int id)
+    public ActionResult<PontoDeInteresse> GetById(int id)
     {
-        var pontodeinteresse = PontoDeInteresseService.Get(id);
+        var pontoDeInteresse = _service.GetById(id);
 
-        if (pontodeinteresse == null)
+        if(pontoDeInteresse is not null)
+        {
+            return pontoDeInteresse;
+        }
+        else
+        {
             return NotFound();
-
-        return pontodeinteresse;
+        }
     }
 
     [HttpPost]
-    public IActionResult Create(PontoDeInteresse pontodeinteresse)
-    {            
-        PontoDeInteresseService.Add(pontodeinteresse);
-        return CreatedAtAction(nameof(Get), new { id = pontodeinteresse.Id }, pontodeinteresse);
+    public IActionResult Create(PontoDeInteresse newPontoDeInteresse)
+    {
+        var pontoDeInteresse = _service.Create(newPontoDeInteresse);
+        return CreatedAtAction(nameof(GetById), new { id = pontoDeInteresse!.Id }, pontoDeInteresse);
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, PontoDeInteresse pontodeinteresse)
+    public IActionResult Update(int id, PontoDeInteresse altPontoDeInteresse)
     {
-        if (id != pontodeinteresse.Id)
-        return BadRequest();
-           
-        var existingPontoDeInteresse = PontoDeInteresseService.Get(id);
-        if(existingPontoDeInteresse is null)
+        var pontoDeInteresseToUpdate = _service.GetById(id);
+
+        if(pontoDeInteresseToUpdate is null)
             return NotFound();
-    
-        PontoDeInteresseService.Update(pontodeinteresse);           
-    
-        return NoContent();
+        
+        _service.Update(altPontoDeInteresse);
+        return NoContent();  
     }
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        var pontodeinteresse = PontoDeInteresseService.Get(id);
-   
-        if (pontodeinteresse is null)
+        var pontoDeInteresse = _service.GetById(id);
+
+        if(pontoDeInteresse is null)
             return NotFound();
         
-        PontoDeInteresseService.Delete(id);
-    
-        return NoContent();
+        _service.DeleteById(id);
+        return Ok();
     }
 }
