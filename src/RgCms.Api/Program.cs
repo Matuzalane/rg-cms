@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using MySql.EntityFrameworkCore.Extensions;
 using RgCms.Api.Data;
+using RgCms.Api.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<RgCmsContext>(options =>
     options.UseMySQL(builder.Configuration.GetConnectionString("RgCmsContext")));
+
+builder.Services.AddScoped<PontoDeInteresseService>();
 
 var app = builder.Build();
 

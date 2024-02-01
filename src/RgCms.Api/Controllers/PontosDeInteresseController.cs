@@ -8,7 +8,7 @@ namespace RgCms.Api.Controllers;
 [Route("[controller]")]
 public class PontoDeInteresseController : ControllerBase
 {
-    PontoDeInteresseService _service;
+    private readonly PontoDeInteresseService _service;
 
     public PontoDeInteresseController(PontoDeInteresseService service)
     {
@@ -51,7 +51,7 @@ public class PontoDeInteresseController : ControllerBase
         if(pontoDeInteresseToUpdate is null)
             return NotFound();
         
-        _service.Update(altPontoDeInteresse);
+        _service.Update(id, altPontoDeInteresse);
         return NoContent();  
     }
 
