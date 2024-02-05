@@ -1,6 +1,7 @@
-using RgCms.Api.Models;
-using RgCms.Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RgCms.Api.Data;
+using RgCms.Api.Models;
 
 namespace RgCms.Api.Controllers;
 
@@ -8,62 +9,76 @@ namespace RgCms.Api.Controllers;
 [Route("[controller]")]
 public class PontoDeInteresseController : ControllerBase
 {
-    private readonly PontoDeInteresseService _service;
+    private readonly RgCmsContext _context;
 
-    public PontoDeInteresseController(PontoDeInteresseService service)
+    public PontoDeInteresseController(RgCmsContext context)
     {
-        _service = service;
+        _context = context;
     }
 
     [HttpGet]
-    public IEnumerable<PontoDeInteresse> GetAll()
+    public IActionResult GetAll()
     {
-        return _service.GetAll();
+        return Ok(_context.PontosDeInteresse
+                .Include(p => p.RedesSociais)
+                .Include(p => p.Fotos)
+                .AsNoTracking()
+                .ToList());
     }
 
     [HttpGet("{id}")]
-    public ActionResult<PontoDeInteresse> GetById(int id)
+    public IActionResult GetById(int id)
     {
-        var pontoDeInteresse = _service.GetById(id);
+        var pontoDeInteresse = _context.PontosDeInteresse
+            .Include(p => p.Fotos) // Incluir a propriedade "fotos"
+            .Include(p => p.RedesSociais) // Incluir a propriedade "redesSociais"
+            .FirstOrDefault(p => p.Id == id);
+;
 
-        if(pontoDeInteresse is not null)
-        {
-            return pontoDeInteresse;
-        }
-        else
-        {
+        if(pontoDeInteresse is null)
             return NotFound();
-        }
+            
+        return Ok(pontoDeInteresse);
     }
 
     [HttpPost]
     public IActionResult Create(PontoDeInteresse newPontoDeInteresse)
     {
-        var pontoDeInteresse = _service.Create(newPontoDeInteresse);
-        return CreatedAtAction(nameof(GetById), new { id = pontoDeInteresse!.Id }, pontoDeInteresse);
+        _context.PontosDeInteresse.Add(newPontoDeInteresse);
+        _context.SaveChanges();
+
+        return Ok(CreatedAtAction(nameof(GetById), new { id = newPontoDeInteresse!.Id }, newPontoDeInteresse));
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, PontoDeInteresse altPontoDeInteresse)
+    public IActionResult UpdatePontoDeInteresse(int id, PontoDeInteresse altPontoDeInteresse)
     {
-        var pontoDeInteresseToUpdate = _service.GetById(id);
+        var pontoDeInteresseToUpdate = GetById(id);
 
         if(pontoDeInteresseToUpdate is null)
             return NotFound();
-        
-        _service.Update(id, altPontoDeInteresse);
-        return NoContent();  
+
+        _context.Entry(pontoDeInteresseToUpdate).CurrentValues.SetValues(altPontoDeInteresse);
+
+        //_context.PontosDeInteresse.Update(pontoDeInteresseToUpdate);
+        _context.Update(pontoDeInteresseToUpdate);
+        _context.SaveChanges();
+
+        return Ok(pontoDeInteresseToUpdate); // resolver pendencias na atualização de Fotos e redes sociais
     }
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        var pontoDeInteresse = _service.GetById(id);
+        var pontoDeInteresseToDelete = _context.PontosDeInteresse.Find(id);
 
-        if(pontoDeInteresse is null)
+        if(pontoDeInteresseToDelete is null)
             return NotFound();
         
-        _service.DeleteById(id);
+        _context.PontosDeInteresse.Remove(pontoDeInteresseToDelete);
+        _context.SaveChanges();     
         return Ok();
+
+        
     }
 }
