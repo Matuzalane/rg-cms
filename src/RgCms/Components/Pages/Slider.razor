@@ -1,0 +1,38 @@
+@inject IJSRuntime JsRuntime
+@rendermode InteractiveServer
+
+<!-- Slider main container -->
+<div class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide" />
+    </div>
+    <!-- If we need pagination -->
+    @if (Pagination == true){
+        <div class='swiper-pagination'></div>
+    }
+    <!-- If we need navigation buttons -->
+    @if (Navigation == true){
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    }
+    <!-- If we need scrollbar -->
+    @if (Scrollbar == true){
+        <div class="swiper-scrollbar"></div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Pagination { get; set; } = false;
+    [Parameter]
+    public bool Navigation { get; set; } = false;
+    [Parameter]
+    public bool Scrollbar { get; set; } = false;
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JsRuntime.InvokeVoidAsync("initSwiper", null);
+    }
+}
