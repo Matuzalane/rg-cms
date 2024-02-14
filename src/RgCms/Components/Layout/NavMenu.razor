@@ -1,97 +1,62 @@
 ﻿@rendermode InteractiveServer
-        @* 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div> 
-        *@
+@*
+<div class="nav-item px-3">
+<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+<span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+</NavLink>
+</div>
+*@
 
-<header>
-    <div id="top_line">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <i class="fa-solid fa-phone"></i>
-                    <strong>(53) 3233-8407</strong>
-                </div>
-                <div class="col-6">
-                    <ul id="top_links">
-                        <li>
-                            <a href="#log_in_dialog">
-                                <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                                Log In
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#log_in_dialog">
-                                <i class="fa-solid fa-user-plus"></i>
-                                Registre-se
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+<div class="container">
+    <nav class="col-12 navbar navbar-expand-md sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Logo</a>
+
+            <button class="navbar-toggler @NavButtonCssClass" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation" @onclick="ToggleNavMenu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse @NavBarCssClass" id="navbarCollapse" @onclick="ToggleNavMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                            Início
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/servicos">
+                            Serviços
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/atrativos">
+                            Atrativos
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/midias">
+                            Mídias
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/eventos">
+                            Eventos
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/contato">
+                            Contato
+                        </NavLink>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-    <!-- End top line -->
-
-    <div class="container">
-        <nav class="col-12 navbar navbar-expand-md sticky-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">Logo</a>
-
-                <button class="navbar-toggler @NavButtonCssClass" 
-                        type="button" 
-                        data-bs-toggle="collapse" 
-                        data-bs-target="#navbarCollapse" 
-                        aria-controls="navbarCollapse" 
-                        aria-expanded="false" 
-                        aria-label="Toggle navigation" 
-                        @onclick="ToggleNavMenu">
-
-                    <span class="navbar-toggler-icon"></span>
-
-                </button>
-
-                <div class="collapse navbar-collapse @NavBarCssClass" id="navbarCollapse" @onclick="ToggleNavMenu">
-                    <ul class="navbar-nav ms-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                                Início
-                            </NavLink>
-                        </li>
-                        <li class="nav-item">
-                            <NavLink class="nav-link" href="/servicos">
-                                Serviços
-                            </NavLink>
-                        </li>
-                        <li class="nav-item">
-                            <NavLink class="nav-link" href="/atrativos">
-                                Atrativos
-                            </NavLink>
-                        </li>
-                        <li class="nav-item">
-                            <NavLink class="nav-link" href="/midias">
-                                Mídias
-                            </NavLink>
-                        </li>
-                        <li class="nav-item">
-                            <NavLink class="nav-link" href="/eventos">
-                                Eventos
-                            </NavLink>
-                        </li>
-                        <li class="nav-item">
-                            <NavLink class="nav-link" href="/contato">
-                                Contato
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
+    </nav>
+</div>
 
 @code {
     private bool collapseNavMenu = true;

@@ -4,8 +4,14 @@
     overflow: hidden;
     position: relative;
 }
+.swiper-home {
+    z-index: 2;
+}
 .swiper-slide {
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(img/1.png);
+}
+.swiper-pagination-bullet-active {
+    color: #fff;
+    background: #007aff;
 }

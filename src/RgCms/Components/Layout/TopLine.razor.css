@@ -1,0 +1,35 @@
+#top_line {
+    color: #fff;
+    height: 28px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    visibility: visible;
+    opacity: 1;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 999999;
+}
+#top_links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+#top_links li:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+#top_links li {
+    display: inline-block;
+    border-left: 1px solid rgba(255,255,255,0.3);
+    margin-right: 5px;
+    padding-left: 8px;
+    position: relative;
+    font-weight: 600;
+}
+#top_links a {
+    text-decoration: none;
+    color: #fff;
+    line-height: 20px;
+    padding: 0px 5px;
+}

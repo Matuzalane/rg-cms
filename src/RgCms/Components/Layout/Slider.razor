@@ -2,11 +2,13 @@
 @rendermode InteractiveServer
 
 <!-- Slider main container -->
-<div class="swiper">
+<div class="swiper @(IsHome == true ? "swiper-home": "")">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
-        <div class="swiper-slide" />
+        <div class="swiper-slide" style="background-image: url(img/1.png);"/>
+        <div class="swiper-slide" style="background-image: url(img/2.png);"/>
+        <div class="swiper-slide" style="background-image: url(img/3.png);"/>
     </div>
     <!-- If we need pagination -->
     @if (Pagination == true){
@@ -30,6 +32,8 @@
     public bool Navigation { get; set; } = false;
     [Parameter]
     public bool Scrollbar { get; set; } = false;
+    [Parameter]
+    public bool IsHome { get; set; } = false;
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
