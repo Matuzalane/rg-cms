@@ -31,6 +31,12 @@ function initSwiper() {
             el: '.swiper-scrollbar',
         },
     });
+
+    var element = document.createElement("span");
+    var bulletElements = document.querySelectorAll(".swiper-pagination-bullet");
+    bulletElements.forEach(function(bulletElement){
+        bulletElement.appendChild(element.cloneNode(true));
+    });
 }
 
 /**
