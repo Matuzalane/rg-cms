@@ -1,8 +1,10 @@
 ﻿@page "/"
-@using RgCms.Components.Layout
 
 <PageTitle>Página Inicial</PageTitle>
 
-<Slider IsHome="true" Pagination="true" Navigation="false" Scrollbar="false"></Slider>
+<section id="hero">
+    <ModalSearch></ModalSearch>
+    <Slider IsHome="true" Pagination="true" Navigation="false" Scrollbar="false"></Slider>
+</section>
 
 <CategoriesGrid></CategoriesGrid>

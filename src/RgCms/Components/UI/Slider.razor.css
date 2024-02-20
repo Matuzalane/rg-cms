@@ -1,4 +1,4 @@
-.swiper {
+.swiper-home {
     height: 100vh;
     width: 100%;
     overflow: hidden;
@@ -7,12 +7,13 @@
 .swiper-home {
     z-index: 2;
 }
-.swiper-slide {
+.swiper-home .swiper-slide {
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-.swiper-pagination-bullet-active {
+.swiper-home .swiper-pagination-bullet-active {
     color: #fff;
     background: #007aff;
 }
