@@ -1,0 +1,25 @@
+#search .nav-pills {
+    border-radius: 0;
+    font-size: 12px;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    margin: 0 0 10px;
+}
+#search .nav-pills li button {
+    border: 0;
+    line-height: 20px;
+    text-transform: uppercase !important;
+    color: #fff!important;
+    padding: 10px 15px;
+    margin-right: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    position: relative;
+}
+#search .tab-content {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+}

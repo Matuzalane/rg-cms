@@ -1,0 +1,25 @@
+<div class="panel-dropdown">
+    <a href="#">Guests <span class="qtyTotal">@TotalGuests</span></a>
+    <div class="panel-dropdown-content">
+        <!-- Quantity Buttons for Adults -->
+        <div class="qtyButtons">
+            <label>Adults</label>
+            <div class="qtyDec" @onclick="() => { if (Adults > 1) Adults--; }"></div>
+            <input type="text" class="qtyInput" value="@Adults">
+            <div class="qtyInc" @onclick="() => Adults++"></div>
+        </div>
+        <!-- Quantity Buttons for Children -->
+        <div class="qtyButtons">
+            <label>Children</label>
+            <div class="qtyDec" @onclick="() => { if (Children > 0) Children--; }"></div>
+            <input type="text" class="qtyInput" value="@Children">
+            <div class="qtyInc" @onclick="() => Children++"></div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public int Adults { get; set; }
+    [Parameter] public int Children { get; set; }
+    [Parameter] public int TotalGuests { get; set; }
+}

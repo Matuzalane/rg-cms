@@ -1,0 +1,111 @@
+@rendermode InteractiveServer
+
+<div id="search">
+    <ul class="nav nav-pills" role="tablist">
+        @for (int i = 0; i < items.Count; i++)
+        {
+            var item = items[i];
+            var isActive = IsThisItemActive(items[i], false);
+
+            <li class="nav-item" role="presentation">
+                <button href=@($"#{item.Name}")
+                    class="@($"nav-link {isActive}")"
+                    data-bs-toggle="pill"
+                    data-bs-target="@($"#{item.Name}")"
+                    role="tab"
+                    aria-controls="@item.Name" 
+                    aria-selected="@isActive"
+                    @onclick="() => SetActiveTab(item)" 
+                    id="@($"{item.Name}-tab")">@((MarkupString)item.Icon) @item.Name</button>
+            </li>
+        }
+    </ul>
+
+    <div class="tab-content">
+        @for (int y = 0; y < items.Count; y++)
+        {
+            var item = items[y];
+            var isActive = IsThisItemActive(items[y], true);
+
+            <div class="@($"tab-pane fade {isActive}")" id="@(item.Name)" role="tabpanel" aria-labelledby=@($"{item.Name}-tab")>
+                <form>
+                    <div class="row g-0 custom-search-input-2">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <input class="form-control pac-target-input" type="text" placeholder="Where..." @bind="Where" autocomplete="off">
+                                <i class="icon_pin_alt"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <input class="form-control date-pick" type="text" name="dates" placeholder="When.." @bind="When">
+                                <i class="icon_calendar"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <GuestDropdown Adults="@Adults" Children="@Children" TotalGuests="@TotalGuests"/>
+                        </div>
+                    </div>
+                    <button class="btn_search" @onclick="SearchTours">Search</button>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    string Where { get; set; } = "";
+    string When { get; set; } = "";
+    int Adults { get; set; } = 1;
+    int Children { get; set; } = 0;
+    int TotalGuests => Adults + Children;
+    List<Item> items = new List<Item>
+    {
+        new Item { Id = 1, Name = "Tours", Icon="<i class='fa-solid fa-tags fa-xl pe-2'></i>" },
+        new Item { Id = 2, Name = "Hotels", Icon="<i class='fa-solid fa-hotel fa-xl pe-2'></i>" },
+        new Item { Id = 3, Name = "Restaurants", Icon="<i class='fa-solid fa-utensils fa-xl pe-2'></i>" }
+    };
+    protected override void OnInitialized()
+    {
+        foreach (var i in items)
+        {
+            var total = items.Count;
+            if (i.IsActive)
+                break;
+            else
+                items[0].IsActive = true;
+        }
+    }
+    void SetActiveTab(Item item)
+    {
+        foreach (var i in items)
+        {
+            i.IsActive = false;
+        }
+        item.IsActive = true;
+    }
+    public string IsThisItemActive(Item item, bool form)
+    {
+        if (item.IsActive == true && form == false) {
+            return "active";
+        } else if (item.IsActive == true && form == true) {
+            return "active show";
+        } else {
+            return "";
+        }
+    }
+
+    public class Item
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = "";
+        public bool IsActive { get; set; } = false;
+        public string Icon { get; set; } = "";
+    }
+
+    // Define event handler for form submission
+    void SearchTours()
+    {
+        // Handle form submission logic here
+    }
+}

@@ -57,15 +57,10 @@ a:hover, a:focus {
     text-decoration: none;
     outline: none;
 }
-#hero {
-    text-align: center;
-}
 #search {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -50%;
-    /* Metade do valor da Largura */
+    position: relative;
+    top: -65%;
     width: 100%;
+    padding: 0 15%;
     z-index: 3;
 }
