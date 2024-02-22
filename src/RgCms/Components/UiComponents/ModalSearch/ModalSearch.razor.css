@@ -1,11 +1,12 @@
-#search .nav-pills {
+.nav-pills {
     border-radius: 0;
     font-size: 12px;
     border: 0;
     border-bottom: 1px solid transparent;
     margin: 0 0 10px;
 }
-#search .nav-pills li button {
+.nav-pills li button {
+    background: rgba(0,0,0,0.40);
     border: 0;
     line-height: 20px;
     text-transform: uppercase !important;
@@ -18,8 +19,63 @@
     border-radius: 3px;
     position: relative;
 }
-#search .tab-content {
-    padding: 0;
-    border: 0;
+.nav-pills li button .active {
+    background: var(--fun-blue-700);
+}
+.tab-content {
+    padding: 0px;
     background-color: transparent;
+    border: 0;
+    border-top: none;
+    margin-bottom: 25px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.search-input {
+    background-color: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+    -webkit-box-shadow: 0 0 30px 0 rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 30px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.3);
+}
+.search-input input {
+    border: 0;
+    height: 50px;
+    padding-left: 15px;
+    font-weight: 500;
+}
+.search-input i {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 1.125rem;
+    line-height: 50px;
+    padding: 0;
+    padding-right: 15px;
+    display: inline-block;
+    box-sizing: content-box;
+    width: 20px;
+    height: 50px;
+    color: #999;
+    background-color: transparent;
+    border: 0;
+    border-right: 1px solid #d2d8dd;
+}
+.search-input .form-group {
+    margin: 0;
+}
+.form-control, .form-select {
+    font-size: 13px;
+    color: #333;
+    height: 40px;
+    border-radius: 3px;
 }

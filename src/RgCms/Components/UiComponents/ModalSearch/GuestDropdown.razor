@@ -1,25 +1,57 @@
-<div class="panel-dropdown">
-    <a href="#">Guests <span class="qtyTotal">@TotalGuests</span></a>
-    <div class="panel-dropdown-content">
+@rendermode InteractiveServer
+
+<div class=@($"dropdown input-group {ActiveClass}")>
+    <button  
+        @onclick="() => SetActive()" 
+        id="dLabel" 
+        type="button" 
+        data-bs-toggle="dropdown" 
+        aria-expanded="@IsActive">
+        Guests 
+        <span class="qtyTotal">@TotalGuests</span>
+        <i class="fa-solid fa-angle-down input-group-text float-end"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dLabel">
         <!-- Quantity Buttons for Adults -->
-        <div class="qtyButtons">
+        <li class="qtyButtons">
             <label>Adults</label>
-            <div class="qtyDec" @onclick="() => { if (Adults > 1) Adults--; }"></div>
+            <div class="qtyDec" @onclick="() => { if (Adults > 1) Adults--; }">
+                <i class="fa-solid fa-minus fa-xs"></i>
+            </div>
             <input type="text" class="qtyInput" value="@Adults">
-            <div class="qtyInc" @onclick="() => Adults++"></div>
-        </div>
+            <div class="qtyInc" @onclick="() => Adults++">
+                <i class="fa-solid fa-plus fa-xs"></i>
+            </div>
+        </li>
         <!-- Quantity Buttons for Children -->
-        <div class="qtyButtons">
+        <li class="qtyButtons">
             <label>Children</label>
-            <div class="qtyDec" @onclick="() => { if (Children > 0) Children--; }"></div>
+            <div class="qtyDec" @onclick="() => { if (Children > 0) Children--; }">
+                <i class="fa-solid fa-minus fa-xs"></i>
+            </div>
             <input type="text" class="qtyInput" value="@Children">
-            <div class="qtyInc" @onclick="() => Children++"></div>
-        </div>
-    </div>
+            <div class="qtyInc" @onclick="() => Children++">
+                <i class="fa-solid fa-plus fa-xs"></i>
+            </div>
+        </li>
+    </ul>
 </div>
 
 @code {
     [Parameter] public int Adults { get; set; }
     [Parameter] public int Children { get; set; }
     [Parameter] public int TotalGuests { get; set; }
+
+    public bool IsActive { get; set; } = false;
+    public string ActiveClass { get; set; } = "";
+
+    public void SetActive(){
+        if (IsActive == false) {
+            IsActive = true;
+            ActiveClass = "active";
+        }  else {
+            IsActive = false;
+            ActiveClass = "";
+        }
+    }
 }

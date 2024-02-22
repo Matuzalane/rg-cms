@@ -29,17 +29,17 @@
 
             <div class="@($"tab-pane fade {isActive}")" id="@(item.Name)" role="tabpanel" aria-labelledby=@($"{item.Name}-tab")>
                 <form>
-                    <div class="row g-0 custom-search-input-2">
+                    <div class="row g-0 search-input">
                         <div class="col-lg-4">
-                            <div class="form-group">
+                            <div class="input-group">
                                 <input class="form-control pac-target-input" type="text" placeholder="Where..." @bind="Where" autocomplete="off">
-                                <i class="icon_pin_alt"></i>
+                                <i class="fa-solid fa-location-dot input-group-text"></i>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="form-group">
+                            <div class="input-group">
                                 <input class="form-control date-pick" type="text" name="dates" placeholder="When.." @bind="When">
-                                <i class="icon_calendar"></i>
+                                <i class="fa-regular fa-calendar input-group-text"></i>
                             </div>
                         </div>
                         <div class="col-lg-3">
