@@ -9,7 +9,7 @@
     padding-bottom: 5rem;
 }
 .categories a {
-    color: #fff;
+    color: var(--fun-blue-50);
     display: block;
     position: relative;
     left: 0;
@@ -41,7 +41,7 @@
     transform: scale(1);
 }
 .categories a .text {
-    color: #fff;
+    color: var(--fun-blue-50);
     width: 100%;
     background: transparent;
     background: -webkit-linear-gradient(top,transparent,#000);

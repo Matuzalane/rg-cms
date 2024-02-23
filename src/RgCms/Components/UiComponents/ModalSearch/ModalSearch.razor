@@ -32,13 +32,13 @@
                     <div class="row g-0 search-input">
                         <div class="col-lg-4">
                             <div class="input-group">
-                                <input class="form-control pac-target-input" type="text" placeholder="Where..." @bind="Where" autocomplete="off">
+                                <input class="form-control pac-target-input" type="text" placeholder="Onde..." @bind="Where" autocomplete="off">
                                 <i class="fa-solid fa-location-dot input-group-text"></i>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="input-group">
-                                <input class="form-control date-pick" type="text" name="dates" placeholder="When.." @bind="When">
+                                <input class="form-control date-pick" type="text" name="dates" placeholder="Quando..." @bind="When">
                                 <i class="fa-regular fa-calendar input-group-text"></i>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                             <GuestDropdown Adults="@Adults" Children="@Children" TotalGuests="@TotalGuests"/>
                         </div>
                         <div class="col-lg-2">
-                            <button type="submit" class="btn_search" @onclick="Search">Search</button>
+                            <button type="submit" class="btn_search" @onclick="Search">Pesquisar</button>
                         </div>
                     </div>
                 </form>
@@ -64,9 +64,9 @@
 
     List<Item> items = new List<Item>
     {
-        new Item { Id = 1, Name = "Tours", Icon="<i class='fa-solid fa-tags fa-xl pe-2 d-none d-sm-inline-block'></i>" },
-        new Item { Id = 2, Name = "Hotels", Icon="<i class='fa-solid fa-hotel fa-xl pe-2 d-none d-sm-inline-block'></i>" },
-        new Item { Id = 3, Name = "Restaurants", Icon="<i class='fa-solid fa-utensils fa-xl pe-2 d-none d-sm-inline-block'></i>" }
+        new Item { Id = 1, Name = "Passeios", Icon="<i class='fa-solid fa-tags fa-xl pe-2 d-none d-sm-inline-block'></i>" },
+        new Item { Id = 2, Name = "Hotéis", Icon="<i class='fa-solid fa-hotel fa-xl pe-2 d-none d-sm-inline-block'></i>" },
+        new Item { Id = 3, Name = "Restaurantes", Icon="<i class='fa-solid fa-utensils fa-xl pe-2 d-none d-sm-inline-block'></i>" }
     };
     protected override void OnInitialized()
     {

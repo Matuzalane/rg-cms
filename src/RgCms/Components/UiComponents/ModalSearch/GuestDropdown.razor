@@ -7,14 +7,14 @@
         type="button" 
         data-bs-toggle="dropdown" 
         aria-expanded="@IsActive">
-        Guests 
+        Visitantes 
         <span id="qtyTotalAnimation" class="qtyTotal">@TotalGuests</span>
         <i class="fa-solid fa-angle-down input-group-text float-end"></i>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dLabel">
         <!-- Quantity Buttons for Adults -->
         <li class="qtyButtons">
-            <label>Adults</label>
+            <label>Adultos</label>
             <div class="qtyDec" @onclick="() => { if (Adults > 1) DecAdults(); }">
                 <i class="fa-solid fa-minus fa-xs"></i>
             </div>
@@ -25,7 +25,7 @@
         </li>
         <!-- Quantity Buttons for Children -->
         <li class="qtyButtons">
-            <label>Children</label>
+            <label>Crianças</label>
             <div class="qtyDec" @onclick="() => { if (Children > 0) DecChildren(); }">
                 <i class="fa-solid fa-minus fa-xs"></i>
             </div>

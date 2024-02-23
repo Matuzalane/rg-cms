@@ -16,7 +16,7 @@
     text-align: left;
     height: 50px;
     padding: .375rem .75rem;
-    background-color: #fff;
+    background-color: var(--fun-blue-50);
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -54,7 +54,7 @@
     top: 58px;
     left: 0;
     z-index: 99;
-    background: #fff;
+    background: var(--fun-blue-50);
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 12px 35px 2px rgba(0,0,0,0.12);
@@ -75,14 +75,14 @@
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-bottom-color: #fff;
+    border-bottom-color: var(--fun-blue-50);
     border-width: 7px;
     margin-left: -7px;
 }
 .qtyTotal {
     background-color: #66676b;
     border-radius: 50%;
-    color: #fff;
+    color: var(--fun-blue-50);
     display: inline-block;
     font-size: 11px;
     font-weight: 600 !important;

@@ -11,7 +11,7 @@ header.sticky #top_line {
     -o-transition: all .2s ease-in-out;
 }
 #top_line {
-    color: #fff;
+    color: var(--fun-blue-50);
     height: 28px;
     font-size: 12px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
@@ -41,7 +41,7 @@ header.sticky #top_line {
 }
 #top_links a {
     text-decoration: none;
-    color: #fff;
+    color: var(--fun-blue-50);
     line-height: 20px;
     padding: 0px 5px;
 }

@@ -10,7 +10,7 @@
     border: 0;
     line-height: 20px;
     text-transform: uppercase !important;
-    color: #fff!important;
+    color: var(--fun-blue-50)!important;
     padding: 10px 15px;
     margin-right: 5px;
     -webkit-border-radius: 3px;
@@ -36,7 +36,7 @@
     border-bottom-left-radius: 3px;
 }
 .search-input {
-    background-color: #fff;
+    background-color: var(--fun-blue-50);
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -47,12 +47,14 @@
     box-shadow: 0 0 30px 0 rgba(0,0,0,0.3);
 }
 .search-input input {
+    background-color: var(--fun-blue-50);
     border: 0;
     height: 50px;
     padding-left: 15px;
     font-weight: 500;
 }
 .search-input i {
+    background-color: var(--fun-blue-50);
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -78,7 +80,7 @@
     -webkit-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-    color: #fff;
+    color: var(--fun-blue-50);
     font-weight: 700;
     font-size: 14px;
     border: 0;
@@ -94,7 +96,10 @@
 }
 .search-input button[type='submit']:hover {
     background-color: var(--ocean-green-400);
-    color: #fff;
+    color: var(--fun-blue-50);
+}
+.form-control:focus {
+    box-shadow: none;
 }
 .form-control, .form-select {
     font-size: 13px;

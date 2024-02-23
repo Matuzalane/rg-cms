@@ -8,12 +8,12 @@
     z-index: 2;
 }
 .swiper-home .swiper-slide {
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 .swiper-home .swiper-pagination-bullet-active {
-    color: #fff;
+    color: var(--fun-blue-50);
     background: #007aff;
 }

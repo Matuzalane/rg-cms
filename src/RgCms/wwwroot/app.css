@@ -26,13 +26,6 @@
     --ocean-green-800: #184d33;
     --ocean-green-900: #153f2b;
     --ocean-green-950: #0b2318;
-
-    /*------------------------------------------------------------*/
-    /*-------------------- NAV MENU VARIABLES --------------------*/
-    /*------------------------------------------------------------*/
-
-    --bs-nav-link-font-weight: 600;
-
     
     /*------------------------------------------------------------*/
     /*--------------------- SWIPER VARIABLES ---------------------*/
@@ -57,7 +50,7 @@
     --swiper-pagination-bullet-vertical-gap: 5px;
 
     /*--------- Custom Properties for Swiper Slider ---------*/
-    --swiper-pagination-bullet-button-border: 2px solid #fff;
+    --swiper-pagination-bullet-button-border: 2px solid var(--fun-blue-50);
 
 
     /*----------------- END OF SWIPER VARIABLES ------------------*/
@@ -89,6 +82,9 @@ a:hover, a:focus {
     width: 100%;
     padding: 0 15%;
     z-index: 3;
+}
+.nav-item .nav-link {
+    color: var(--fun-blue-50);
 }
 
 @media (max-width: 575px){
