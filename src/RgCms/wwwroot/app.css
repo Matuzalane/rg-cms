@@ -15,6 +15,17 @@
     --fun-blue-900: #1d365d;
     --fun-blue-950: #14233d;
 
+    --ocean-green-50: #effaf3;
+    --ocean-green-100: #d9f2e0;
+    --ocean-green-200: #b7e3c6;
+    --ocean-green-300: #87cea3;
+    --ocean-green-400: #4ca973;
+    --ocean-green-500: #339660;
+    --ocean-green-600: #23784c;
+    --ocean-green-700: #1c603e;
+    --ocean-green-800: #184d33;
+    --ocean-green-900: #153f2b;
+    --ocean-green-950: #0b2318;
 
     /*------------------------------------------------------------*/
     /*-------------------- NAV MENU VARIABLES --------------------*/
@@ -78,4 +89,11 @@ a:hover, a:focus {
     width: 100%;
     padding: 0 15%;
     z-index: 3;
+}
+
+@media (max-width: 575px){
+    #search {
+        padding: 0 15px;
+        top: -80%;
+    }
 }

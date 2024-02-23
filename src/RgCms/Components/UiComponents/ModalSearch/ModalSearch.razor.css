@@ -19,8 +19,8 @@
     border-radius: 3px;
     position: relative;
 }
-.nav-pills li button .active {
-    background: var(--fun-blue-700);
+.nav-pills li button.active {
+    background: var(--fun-blue-600);
 }
 .tab-content {
     padding: 0px;
@@ -66,16 +66,64 @@
     width: 20px;
     height: 50px;
     color: #999;
-    background-color: transparent;
     border: 0;
     border-right: 1px solid #d2d8dd;
 }
 .search-input .form-group {
     margin: 0;
 }
+.search-input button[type='submit'] {
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border: 0;
+    padding: 0 25px;
+    height: 50px;
+    outline: none;
+    width: 100%;
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    -ms-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+    background-color: var(--fun-blue-600);
+}
+.search-input button[type='submit']:hover {
+    background-color: var(--ocean-green-400);
+    color: #fff;
+}
 .form-control, .form-select {
     font-size: 13px;
     color: #333;
     height: 40px;
     border-radius: 3px;
+}
+
+@media (max-width: 575px){
+    .nav-pills li button {
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 991px){
+    .search-input {
+        background: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    .search-input .input-group {
+        margin-bottom: 5px;
+    }
+    .search-input button[type='submit'] {
+        margin: 20px 0 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+    }
 }

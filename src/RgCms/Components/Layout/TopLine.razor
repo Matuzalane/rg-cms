@@ -4,11 +4,11 @@
 <div id="top_line">
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-5">
                     <i class="fa-solid fa-phone"></i>
                     <strong>(53) 3233-8407</strong>
                 </div>
-                <div class="col-6">
+                <div class="col-7">
                     <ul id="top_links">
                         <li>
                             <a href="#log_in_dialog">
@@ -29,9 +29,14 @@
     </div>
     <!-- End top line -->
 
-    @code {
+@code {
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
-        await JsRuntime.InvokeVoidAsync("topLinksHover", null); 
+        if (firstRender)
+        {
+            await JsRuntime.InvokeVoidAsync("makeHeaderSticky", null);
+            await JsRuntime.InvokeVoidAsync("topLinksHover", null); 
+            await JsRuntime.InvokeVoidAsync("qtyGuestAnimation", null); 
+        }
     }
 }

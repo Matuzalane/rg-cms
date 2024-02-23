@@ -38,9 +38,7 @@ function initSwiper() {
         bulletElement.appendChild(element.cloneNode(true));
     });
 }
-
 /**
- * Add a Event Listener for mause-hover 
  * Style animation in the Top Line Links
  */
 function topLinksHover() {
@@ -75,5 +73,25 @@ function topLinksHover() {
     for (var k = 0; k < elements.length; k++) {
         elements[k].addEventListener("mouseenter", handleHoverIn);
         elements[k].addEventListener("mouseleave", handleHoverOut);
+    }
+}
+function makeHeaderSticky() {
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 1) {
+            document.querySelector("header").classList.add("sticky");
+        } else {
+            document.querySelector("header").classList.remove("sticky");
+        }
+    });
+}
+function qtyGuestAnimation() {
+    var elements = document.querySelectorAll(".qtyButtons > div");
+
+    function rotation() {
+        document.getElementById("qtyTotalAnimation").classList.toggle("rotation-y");
+    };
+
+    for (var k = 0; k < elements.length; k++) {
+        elements[k].addEventListener("click", rotation);
     }
 }

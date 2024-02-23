@@ -1,3 +1,15 @@
+header.sticky #top_line {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    opacity: 0;
+    margin: 0;
+    border: 0;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
 #top_line {
     color: #fff;
     height: 28px;

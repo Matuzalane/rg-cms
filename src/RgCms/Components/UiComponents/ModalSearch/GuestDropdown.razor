@@ -8,29 +8,29 @@
         data-bs-toggle="dropdown" 
         aria-expanded="@IsActive">
         Guests 
-        <span class="qtyTotal">@TotalGuests</span>
+        <span id="qtyTotalAnimation" class="qtyTotal">@TotalGuests</span>
         <i class="fa-solid fa-angle-down input-group-text float-end"></i>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dLabel">
         <!-- Quantity Buttons for Adults -->
         <li class="qtyButtons">
             <label>Adults</label>
-            <div class="qtyDec" @onclick="() => { if (Adults > 1) Adults--; }">
+            <div class="qtyDec" @onclick="() => { if (Adults > 1) DecAdults(); }">
                 <i class="fa-solid fa-minus fa-xs"></i>
             </div>
-            <input type="text" class="qtyInput" value="@Adults">
-            <div class="qtyInc" @onclick="() => Adults++">
+            <input type="text" class="qtyInput" @bind="Adults">
+            <div class="qtyInc" @onclick="() => IncAdults()">
                 <i class="fa-solid fa-plus fa-xs"></i>
             </div>
         </li>
         <!-- Quantity Buttons for Children -->
         <li class="qtyButtons">
             <label>Children</label>
-            <div class="qtyDec" @onclick="() => { if (Children > 0) Children--; }">
+            <div class="qtyDec" @onclick="() => { if (Children > 0) DecChildren(); }">
                 <i class="fa-solid fa-minus fa-xs"></i>
             </div>
-            <input type="text" class="qtyInput" value="@Children">
-            <div class="qtyInc" @onclick="() => Children++">
+            <input type="text" class="qtyInput" @bind="Children">
+            <div class="qtyInc" @onclick="() => IncChildren()">
                 <i class="fa-solid fa-plus fa-xs"></i>
             </div>
         </li>
@@ -53,5 +53,21 @@
             IsActive = false;
             ActiveClass = "";
         }
+    }
+    public void IncAdults(){
+        Adults++;
+        TotalGuests = Adults + Children;
+    }
+    public void DecAdults(){
+        Adults--;
+        TotalGuests--;
+    }
+    public void IncChildren(){
+        Children++;
+        TotalGuests = Adults + Children;
+    }
+    public void DecChildren(){
+        Children--;
+        TotalGuests--;
     }
 }
