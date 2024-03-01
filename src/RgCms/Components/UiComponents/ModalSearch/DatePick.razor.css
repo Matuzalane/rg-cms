@@ -1,0 +1,48 @@
+.search-input .input-group {
+    margin: 0;
+}
+
+.input-group .date-pick {
+    background-color: var(--fun-blue-50);
+    border: 0;
+    height: 50px;
+    padding-left: 15px;
+    font-weight: 500;
+}
+
+.input-group-text {
+    background-color: var(--fun-blue-50);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 1.125rem;
+    line-height: 50px;
+    padding: 0;
+    padding-right: 15px;
+    display: inline-block;
+    box-sizing: content-box;
+    width: 20px;
+    height: 50px;
+    color: #999;
+    border: 0;
+    border-right: 1px solid #d2d8dd;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-control,
+.form-select {
+    font-size: 13px;
+    color: #333;
+    height: 40px;
+    border-radius: 3px;
+}
+
+@media (max-width: 991px) {
+    .search-input .input-group {
+        margin-bottom: 5px;
+    }
+}

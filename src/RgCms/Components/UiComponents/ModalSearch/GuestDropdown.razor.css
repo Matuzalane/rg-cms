@@ -122,6 +122,7 @@
     pointer-events: none;
     display: inline-block;
     border: none!important;
+    background-color: transparent;
 }
 .qtyInc, .qtyDec {
     width: 36px;

@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Isopoh.Cryptography.Argon2" Version="2.0.0" />
+    <PackageReference Include="Syncfusion.Blazor.Calendars" Version="24.2.3" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="24.2.3" />
   </ItemGroup>
 
 </Project>

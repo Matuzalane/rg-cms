@@ -10,7 +10,7 @@ header.sticky {
     -webkit-box-shadow: 0 2px 10px -2px rgba(0,0,0,0.41);
     -moz-box-shadow: 0 2px 10px -2px rgba(0,0,0,0.41);
     box-shadow: 0 2px 10px -2px rgba(0,0,0,0.41);
-    background-color: var(--fun-blue-50);
+    background-color: #fff;
     padding-bottom: 0;
 }
 a {

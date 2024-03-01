@@ -1,0 +1,220 @@
+@inject IJSRuntime JsRuntime
+@rendermode InteractiveServer
+
+<div class="input-group">
+    <input id="dateRangePicker" class="form-control date-pick" type="text" name="dates" placeholder="Quando..." 
+    @bind="When">
+    <i class="fa-regular fa-calendar input-group-text"></i>
+</div>
+
+@code {
+    [Parameter] public string When { get; set; } = "";
+
+
+    protected override void OnInitialized()
+    {
+        // Define as datas iniciais como a data atual
+        When = DateTime.Today.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsRuntime.InvokeVoidAsync("initializeDateRangePicker");
+        }
+    }
+}
+
+@* <div class=@($"daterangepicker ltr opensright {(IsActive ? "show-calendar" : "")}")>
+    <div class="ranges"></div>
+    @if (IsPreviousButtonVisible())
+    {
+        <button type="button" class="btn btn-sm btn-default" @onclick="GoToPreviousMonth">Previous</button>
+    }
+    <button type="button" class="btn btn-sm btn-default" @onclick="GoToNextMonth">Next</button>
+    @foreach (var calendar in calendars)
+    {
+        <div class="drp-calendar @(calendar.IsLeft ? "left" : "right")">
+            <div class="calendar-table">
+                <table class="table-condensed">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th colspan="5" class="month">@calendar.MonthName @calendar.Year</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            @foreach (var dayOfWeek in calendar.DaysOfTheWeek) {<th>@dayOfWeek</th>}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var week in calendar.CalendarMatrix)
+                        {
+                            <tr>
+                                @foreach (var day in week)
+                                {
+                                    <td class="@GetDayClass(day, calendar.IsLeft)">@day.Day</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="calendar-time" style="display: none;"></div>
+        </div>
+    }
+    <div class="drp-buttons">
+        <span class="drp-selected">@GetSelectedRange()</span>
+        <button class="cancelBtn btn btn-sm btn-default" type="button" @onclick="ClearSelection">Clear</button>
+        <button class="applyBtn btn btn-sm btn-primary" type="button" @onclick="ApplySelection">Apply</button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string When { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
+    public bool IsActive { get; set; }
+    public DateTime StartDate { get; set; } = DateTime.Today;
+    public DateTime EndDate { get; set; } = DateTime.Today;
+
+    DateTime Now = DateTime.Now;
+    int currentYear = DateTime.Now.Year;
+    int currentMonth = DateTime.Now.Month;
+
+    List<CalendarInfo> calendars = new List<CalendarInfo>();
+    
+    public class CalendarInfo
+    {
+        public string MonthName { get; set; } = "";
+        public int Year { get; set; }
+        public bool IsLeft { get; set; }
+        public string[] DaysOfTheWeek { get; set; } = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+        public DateTime[][] CalendarMatrix { get; set; } = [];
+    }
+
+    protected override void OnInitialized()
+    {
+        GenerateCalendars(currentYear, currentMonth, true);
+    }
+
+    string GetDayClass(DateTime day, bool IsLeft)
+    {
+        if (day < DateTime.Today)
+            return "off disabled";
+        else if (day == StartDate && day == EndDate)
+            return "today active start-date end-date in-range available";
+        else if (day == StartDate)
+            return "active start-date available";
+        else if (day == EndDate)
+            return "active end-date in-range available";
+        else if (day > StartDate && day < EndDate)
+            return "in-range available";
+        else if (IsCurrentMonth(day, IsLeft))
+            return "off ends available"; 
+        else
+            return "available";
+    }
+
+    bool IsCurrentMonth(DateTime day, bool IsLeft)
+    {
+        int displayedYear = currentYear;
+        int displayedMonth = currentMonth;
+        DateTime FirstdayInDisplayedMonth = new DateTime(displayedYear, displayedMonth, 1);
+        DateTime LastdayInDisplayedMonth = new DateTime(displayedYear, displayedMonth, 1);
+
+        if (IsLeft && day < FirstdayInDisplayedMonth || IsLeft && day > )
+        // Check if the given day belongs to the displayed month
+        return day.Month == displayedMonth && day.Year == displayedYear;
+    }
+
+    string GetSelectedRange()
+    {
+        return $"{StartDate.ToString("MM/dd/yyyy")} - {EndDate.ToString("MM/dd/yyyy")}";
+    }
+
+    void ClearSelection()
+    {
+        StartDate = DateTime.Today;
+        EndDate = DateTime.Today;
+    }
+
+     void ApplySelection()
+    {
+        When = $"{StartDate.ToString("MM/dd/yyyy")} - {EndDate.ToString("MM/dd/yyyy")}";
+        ToggleCalendar();
+    }
+
+    void ToggleCalendar() { IsActive = !IsActive;}
+
+    void GenerateCalendars(int year, int month, bool IsLeft)
+    {
+        var calendar = new CalendarInfo
+        {
+            MonthName = new DateTime(year, month, 1).ToString("MMM").ToUpper(),
+            Year = year,
+            IsLeft = IsLeft,
+            CalendarMatrix = GenerateCalendarMatrix(year, month)
+        };
+        calendars.Add(calendar);
+
+        // Generate the next month's calendar
+        if (IsLeft)
+        {
+            var nextMonth = new DateTime(year, month, 1).AddMonths(1);
+            GenerateCalendars(nextMonth.Year, nextMonth.Month, false);
+        }
+    }
+
+    DateTime[][] GenerateCalendarMatrix(int year, int month)
+    {
+        DateTime monthStart = new DateTime(year, month, 1);
+        int numDummyColumn = (int)monthStart.DayOfWeek;
+        DateTime currentDate = monthStart.AddDays(-numDummyColumn);
+
+        DateTime[][] calendarMatrix = new DateTime[6][];
+
+        for (int i = 0; i < 6; i++)
+        {
+            calendarMatrix[i] = new DateTime[7];
+            for (int j = 0; j < 7; j++)
+            {
+                calendarMatrix[i][j] = currentDate;
+                currentDate = currentDate.AddDays(1);
+            }
+        }
+        return calendarMatrix;
+    }
+
+    void GoToPreviousMonth()
+    {
+        currentMonth--;
+        if (currentMonth == 0)
+        {
+            currentMonth = 12;
+            currentYear--;
+        }
+        RefreshCalendars();
+    }
+
+    void GoToNextMonth()
+    {
+        currentMonth++;
+        if (currentMonth == 13)
+        {
+            currentMonth = 1;
+            currentYear++;
+        }
+        RefreshCalendars();
+    }
+
+    bool IsPreviousButtonVisible()
+    {
+        return currentYear != DateTime.Now.Year || currentMonth != DateTime.Now.Month;
+    }
+
+    void RefreshCalendars()
+    {
+        calendars.Clear();
+        GenerateCalendars(currentYear, currentMonth, true);
+        StateHasChanged();
+    }
+}  *@

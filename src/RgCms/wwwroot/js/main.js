@@ -34,7 +34,7 @@ function initSwiper() {
 
     var element = document.createElement("span");
     var bulletElements = document.querySelectorAll(".swiper-pagination-bullet");
-    bulletElements.forEach(function(bulletElement){
+    bulletElements.forEach(function (bulletElement) {
         bulletElement.appendChild(element.cloneNode(true));
     });
 }
@@ -76,11 +76,15 @@ function topLinksHover() {
     }
 }
 function makeHeaderSticky() {
-    window.addEventListener("scroll", function() {
+    window.addEventListener("scroll", function () {
         if (window.scrollY > 1) {
             document.querySelector("header").classList.add("sticky");
+            document.querySelector("nav").classList.remove("navbar-dark");
+            document.querySelector("nav").classList.add("navbar-light");
         } else {
             document.querySelector("header").classList.remove("sticky");
+            document.querySelector("nav").classList.remove("navbar-light");
+            document.querySelector("nav").classList.add("navbar-dark");
         }
     });
 }
@@ -94,4 +98,50 @@ function qtyGuestAnimation() {
     for (var k = 0; k < elements.length; k++) {
         elements[k].addEventListener("click", rotation);
     }
+}
+function initializeDateRangePicker() {
+    'use strict';
+
+    $('#dateRangePicker').daterangepicker({
+        "autoUpdateInput": false,
+        "minDate": new Date(),
+        "locale": {
+            "format": "DD/MM/YYYY",
+            "separator": " - ",
+            "applyLabel": "Aplicar",
+            "cancelLabel": "Limpar",
+            "fromLabel": "De",
+            "toLabel": "Para",
+            "daysOfWeek": [
+                "Dom",
+                "Seg",
+                "Ter",
+                "Qua",
+                "Qui",
+                "Sex",
+                "Sab"
+            ],
+            "monthNames": [
+                "Janeiro",
+                "Fevereiro",
+                "Março",
+                "Abril",
+                "Maio",
+                "Junho",
+                "Julho",
+                "Agosto",
+                "Setembro",
+                "Outubro",
+                "Novembro",
+                "Dezembro"
+            ],
+            "firstDay": 1
+        },
+    });
+    $('#dateRangePicker').on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('DD/MM/YY') + ' - ' + picker.endDate.format('DD/MM/YY'));
+    });
+    $('#dateRangePicker').on('cancel.daterangepicker', function (ev, picker) {
+        $(this).val('');
+    });
 }

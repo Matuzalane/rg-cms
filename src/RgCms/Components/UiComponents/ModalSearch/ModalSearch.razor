@@ -37,10 +37,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="input-group">
-                                <input class="form-control date-pick" type="text" name="dates" placeholder="Quando..." @bind="When">
-                                <i class="fa-regular fa-calendar input-group-text"></i>
-                            </div>
+                            <DatePick When="@When"/>
                         </div>
                         <div class="col-lg-3">
                             <GuestDropdown Adults="@Adults" Children="@Children" TotalGuests="@TotalGuests"/>
@@ -57,7 +54,7 @@
 
 @code {
     string Where { get; set; } = "";
-    string When { get; set; } = "";
+    string When { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
     int Adults { get; set; } = 1;
     int Children { get; set; } = 0;
     int TotalGuests => Adults + Children;
