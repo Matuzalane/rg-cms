@@ -4,10 +4,6 @@
 #grid-sm-1, #grid-sm-2, #grid-md {
     max-height: 15.7188rem;
 }
-.grid {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-}
 .categories a {
     color: var(--fun-blue-50);
     display: block;

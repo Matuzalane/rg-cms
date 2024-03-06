@@ -1,7 +1,7 @@
 /**
  * Initialize Swiper Functions for slider
  */
-function initSwiper() {
+function initSwiperHome() {
 
     console.log('Entered initSwiper!');
     console.log('swiper text:' + document.querySelector('.swiper').textContent);
@@ -37,6 +37,16 @@ function initSwiper() {
     bulletElements.forEach(function (bulletElement) {
         bulletElement.appendChild(element.cloneNode(true));
     });
+}
+function initTopTourList() {
+    const swiper = new Swiper(".TopTourList", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
 }
 /**
  * Style animation in the Top Line Links

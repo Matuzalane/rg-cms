@@ -103,7 +103,10 @@ a:hover, a:focus {
     --bs-navbar-brand-color: var(--fun-blue-50);
     --bs-navbar-brand-hover-color: var(--fun-blue-50);
 }
-
+.grid {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
 @media (max-width: 575px){
     #search {
         padding: 0 15px;

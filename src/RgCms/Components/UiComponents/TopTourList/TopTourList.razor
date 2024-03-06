@@ -1,0 +1,22 @@
+@inject IJSRuntime JsRuntime
+@rendermode InteractiveServer
+
+<section class="container grid">
+    <div class="row">
+        <div class="col-12 section-title">
+            <h2>PRINCIPAIS TOURS EM RIO GRANDE</h2>
+            <p>Descubra as experiências inesquecíveis que Rio Grande tem a oferecer.</p>
+        </div>
+
+        <div class="col-12">
+            
+        </div>
+    </div>
+</section>
+
+@code {
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JsRuntime.InvokeVoidAsync("initTopTourList", null);
+    }
+}

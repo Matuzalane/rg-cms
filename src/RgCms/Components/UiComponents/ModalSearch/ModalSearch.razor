@@ -28,7 +28,7 @@
             var isActive = IsThisItemActive(items[y], true);
 
             <div class="@($"tab-pane fade {isActive}")" id="@(item.Name)" role="tabpanel" aria-labelledby=@($"{item.Name}-tab")>
-                <form>
+                <form name="@(item.Name)">
                     <div class="row g-0 search-input">
                         <div class="col-lg-4">
                             <div class="input-group">
